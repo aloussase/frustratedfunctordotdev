@@ -1,0 +1,175 @@
+@import url('https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    max-width: 70%;
+    height: 100vh;
+    margin: 0 auto;
+    background-color: #000;
+    color: #fff;
+    font-family: "Source Code Pro", monospace;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+h1, h2, h3 {
+    font-family: "Silkscreen", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+p {
+    margin-bottom: 1rem;
+    line-height: 2;
+}
+
+footer {
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.divider {
+    border-bottom: 1px dotted #fff;
+    margin-bottom: 0.5rem;
+}
+
+nav {
+    width: 100%;
+    padding: 1rem 0;
+    border-bottom: 1px dotted #fff;
+    margin-bottom: 1rem;
+
+    ul {
+        list-style: none;
+        display: flex;
+        justify-content: flex-end;
+        gap: 1rem;
+
+        li {
+            border-radius: 5px;
+
+            a {
+                padding: 0.5rem;
+                color: #fff;
+                text-decoration: none;
+
+                &:hover {
+                    color: #000;
+                }
+            }
+
+            &:hover {
+                background-color: #00ee00;
+            }
+        }
+    }
+}
+
+main {
+    min-height: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+
+    #banner {
+        h1 {
+            margin-bottom: 0.4rem;
+        }
+
+        margin-bottom: 2rem;
+    }
+
+    #about {
+        h1 {
+            margin-bottom: 2rem;
+        }
+    }
+
+    #socials {
+        ul {
+            list-style: none;
+            display: flex;
+            width: 100%;
+            justify-content: flex-end;
+            gap: 0.4rem;
+
+            li {
+                a {
+                    color: #fff;
+                    text-decoration: none;
+                }
+            }
+        }
+    }
+
+    #posts {
+        h1 {
+            margin-bottom: 1rem;
+        }
+
+        .post {
+            margin-bottom: 1rem;
+            display: flex;
+            gap: 0.3rem;
+            align-items: center;
+
+            .post-summary {
+                margin-bottom: 0.1rem;
+            }
+        }
+    }
+
+    #cv {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+
+        h2 {
+            margin-bottom: 1rem;
+        }
+
+        #languages {
+            list-style: none;
+
+            li {
+                margin-bottom: 0.4rem;
+            }
+        }
+
+        #work, #education {
+            .work-entry, .education-entry {
+                display: flex;
+                flex-direction: column;
+                gap: 0.4rem;
+                margin-bottom: 2rem;
+
+                .work-entry-company, .education-entry {
+                    font-weight: bold;
+                }
+
+                .work-entry-position, .education-entry-institution {
+                    display: block;
+                    font-style: italic;
+                }
+
+                .work-entry-tagline, .education-entry-tagline {
+                    display: flex;
+                    width: 100%;
+                    justify-content: space-between;
+                }
+            }
+        }
+    }
+}
+
+

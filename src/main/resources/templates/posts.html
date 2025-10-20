@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en"
+      layout:decorate="~{layout}"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.thymeleaf.org"
+>
+<head>
+    <title layout:title="Posts - Alexander Goussas"></title>
+</head>
+<body>
+
+<div
+        layout:fragment="content"
+        id="posts"
+>
+
+    <h1>Posts</h1>
+
+    <p th:if="${#lists.isEmpty(posts)}">Wow! Empty as my soul...</p>
+
+    <ul>
+        <li class="post" th:each="post : ${posts}">
+            <small class="post-date" th:text="${post.date} + ' | '"></small>
+            <p class="post-summary" th:text="${post.title} + ' - '  + ${post.content} + '...'"></p>
+        </li>
+    </ul>
+
+</div>
+
+</body>
+</html>
