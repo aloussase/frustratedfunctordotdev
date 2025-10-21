@@ -12,7 +12,7 @@
     <title layout:title-pattern="$LAYOUT_TITLE - $CONTENT_TITLE">Alexander Goussas</title>
 </head>
 <body>
-<div th:replace="fragments/navbar :: navbar"></div>
+<div th:replace="~{fragments/navbar :: navbar}"></div>
 <main>
     <div layout:fragment="content"></div>
 </main>

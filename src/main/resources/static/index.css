@@ -172,4 +172,22 @@ main {
     }
 }
 
+@media screen and (max-width: 640px) {
+    body {
+        max-width: 90%;
+    }
 
+    nav {
+        ul {
+            justify-content: center;
+        }
+    }
+
+    main {
+        #banner {
+            h1 {
+                text-align: center;
+            }
+        }
+    }
+}
