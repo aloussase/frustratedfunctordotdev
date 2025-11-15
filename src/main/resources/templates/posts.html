@@ -19,9 +19,13 @@
     <p th:if="${#lists.isEmpty(posts)}">Wow! Empty as my soul...</p>
 
     <ul>
-        <li class="post" th:each="post : ${posts}">
-            <small class="post-date" th:text="${post.date} + ' | '"></small>
-            <p class="post-summary" th:text="${post.title} + ' - '  + ${post.content} + '...'"></p>
+        <li th:each="post : ${posts}">
+            <a th:href='${"posts/" + post.path }'>
+                <article class="post">
+                    <small class="post-date" th:text="${post.date} + ' | '"></small>
+                    <p class="post-summary" th:text="${post.title} + ' - '  + ${post.summary} + '...'"></p>
+                </article>
+            </a>
         </li>
     </ul>
 
