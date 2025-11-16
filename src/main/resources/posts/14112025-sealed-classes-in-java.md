@@ -4,6 +4,8 @@ Author: Alexander Goussas
 
 Date: 14 Nov. 2025
 
+You can find the code for this post on [GitHub](https://github.com/aloussase/sealed-classes-example).
+
 ## What are sealed classes?
 
 Let's start by establishing what sealed classes are not: they are not classes that have been sealed in the Prison
