@@ -111,8 +111,10 @@ main {
         ul {
             list-style: none;
             display: flex;
+            flex-direction: column;
             width: 100%;
-            justify-content: flex-end;
+            align-items: flex-end;
+            justify-content: flex-start;
             gap: 0.4rem;
 
             li {
