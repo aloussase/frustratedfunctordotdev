@@ -1,5 +1,6 @@
 package io.github.aloussase.frustratedfunctordotdev;
 
+import io.github.aloussase.frustratedfunctordotdev.books.BookManager;
 import io.github.aloussase.frustratedfunctordotdev.posts.PostManager;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,14 +10,22 @@ import org.springframework.web.bind.annotation.PathVariable;
 public class Controller {
 
     private final PostManager postManager;
+    private final BookManager bookManager;
 
-    public Controller(PostManager postManager) {
+    public Controller(PostManager postManager, BookManager bookManager) {
         this.postManager = postManager;
+        this.bookManager = bookManager;
     }
 
     @GetMapping("/about")
     public String about() {
         return "about";
+    }
+
+    @GetMapping("/books")
+    public String books(Model model) {
+        model.addAttribute("books", bookManager.listBooks());
+        return "books";
     }
 
     @GetMapping("/cv")

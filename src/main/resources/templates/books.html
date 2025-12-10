@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en"
+      layout:decorate="~{layout}"
+      xmlns:layout="http://www.thymeleaf.org"
+>
+<head>
+    <title layout:title="Books - Alexander Goussas"></title>
+</head>
+<body>
+
+<div layout:fragment="content" id="books">
+
+    <h1>Books</h1>
+
+    <p>
+        These are books I have read or that I'm interested in reading.
+    </p>
+
+    <p th:if="${#lists.isEmpty(books)}">Guess I've been not reading of late...</p>
+
+    <ul>
+        <li th:each="book : ${books}">
+            <article class="book">
+                <p th:text="${book.title}"></p>
+            </article>
+        </li>
+    </ul>
+
+</div>
+
+</body>
+</html>
