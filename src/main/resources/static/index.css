@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 
 * {
     box-sizing: border-box;
@@ -11,22 +12,31 @@ body {
     max-width: 70%;
     height: 100vh;
     margin: 0 auto;
-    background-color: #000;
-    color: #fff;
-    font-family: "Source Code Pro", monospace;
+    background-color: #f4f4f4;
+    color: #333;
+    font-family: "Open Sans", sans-serif;
     font-optical-sizing: auto;
+    font-weight: 400;
     font-style: normal;
+    font-variation-settings: "wdth" 100;
 }
 
 h1, h2, h3 {
     font-family: "Silkscreen", sans-serif;
     font-weight: 400;
     font-style: normal;
+    margin-bottom: 1rem;
 }
 
 p {
     margin-bottom: 1rem;
+    font-size: 1rem;
     line-height: 2;
+}
+
+code {
+    font-family: "Source Code Pro", monospace;
+    font-size: 0.8rem;
 }
 
 footer {
@@ -39,14 +49,14 @@ footer {
 }
 
 .divider {
-    border-bottom: 1px dotted #fff;
+    border-bottom: 1px dotted #333;
     margin-bottom: 0.5rem;
 }
 
 nav {
     width: 100%;
     padding: 1rem 0;
-    border-bottom: 1px dotted #fff;
+    border-bottom: 1px dotted #333;
     margin-bottom: 1rem;
 
     ul {
@@ -60,18 +70,19 @@ nav {
 
             a {
                 padding: 0.5rem;
-                color: #fff;
+                font-size: 0.8rem;
                 text-decoration: none;
-
-                &:hover {
-                    color: #000;
-                }
-            }
-
-            &:hover {
-                background-color: #00ee00;
             }
         }
+    }
+}
+
+a {
+    color: #333 !important;;
+
+    &:hover {
+        font-size: 1.05rem;
+        text-decoration: underline !important;
     }
 }
 
@@ -106,7 +117,6 @@ main {
 
             li {
                 a {
-                    color: #fff;
                     text-decoration: none;
                 }
             }

@@ -9,10 +9,9 @@ You can find the code for this post on [GitHub](https://github.com/aloussase/sea
 ## What are sealed classes?
 
 Let's start by establishing what sealed classes are not: they are not classes that have been sealed in the Prison
-Realm or any other similar artifact.
-
-Rather, sealed class are classes that allow inheritance from a restricted set of other classes. This restriction is
-indicated by a list of permitted classes that follow a `permits` clause in the class defintion.
+Realm or any other similar artifact. Rather, sealed class are classes that allow inheritance from a restricted set of
+other classes. This restriction is indicated by a list of permitted classes that follow a `permits` clause in the class
+defintion.
 
 ## Setting up the stage
 
