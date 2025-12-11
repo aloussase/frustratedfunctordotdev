@@ -9,4 +9,9 @@ public interface BookManager {
      */
     List<Book> listBooks();
 
+    /**
+     * @return A list of available tags.
+     */
+    List<String> listTags();
+
 }

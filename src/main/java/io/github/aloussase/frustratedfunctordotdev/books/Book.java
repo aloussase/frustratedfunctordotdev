@@ -1,5 +1,6 @@
 package io.github.aloussase.frustratedfunctordotdev.books;
 
+import java.time.Instant;
 import java.util.List;
 
 public record Book(
@@ -7,6 +8,8 @@ public record Book(
         String author,
         String title,
         String status,
-        List<String> tags
+        List<String> tags,
+        Instant createdAt,
+        Instant lastUpdated
 ) {
 }
