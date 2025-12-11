@@ -51,7 +51,7 @@ public class BookManagerImpl implements BookManager {
                 select b.id, b.author, b.title, b.status, array_agg(t.name) as tags,
                        b.created_at, b.last_updated from
                     books b
-                        left join books_tags bt on bt.tag_id = b.id
+                        left join books_tags bt on bt.book_id = b.id
                         left join  book_tags t on t.id = bt.tag_id
                 group by b.id
                 order by last_updated desc;
