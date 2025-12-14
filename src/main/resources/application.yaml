@@ -1,11 +1,12 @@
 spring:
   application:
     name: frustratedfunctordotdev
-  datasource:
-    driver-class-name: org.postgresql.Driver
-    url: ${DB_URL:-jdbc:postgresql://localhost:5432/postgres}
-    username: ${DB_USER:-postgres}
-    password: ${DB_PASSWORD:-postgres}
+
+books:
+  api:
+    base_url: ${BOOKS_API_BASE_URL}
+    client_id: ${BOOKS_API_CLIENT_ID}
+    client_secret: ${BOOKS_API_CLIENT_SECRET}
 
 app:
   umami:
