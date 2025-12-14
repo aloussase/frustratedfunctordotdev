@@ -2,7 +2,7 @@
 
 Author: Alexander Goussas
 
-Date: 14 Nov. 2025
+Date: 14/11/2025
 
 You can find the code for this post on [GitHub](https://github.com/aloussase/sealed-classes-example).
 

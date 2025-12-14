@@ -20,7 +20,12 @@ public class PostManagerImpl implements PostManager {
 
     @Override
     public List<Post> getPosts() {
-        return paths.stream().map(this::readPostFrom).filter(Optional::isPresent).map(Optional::get).toList();
+        return paths.stream()
+                .map(this::readPostFrom)
+                .filter(Optional::isPresent)
+                .map(Optional::get)
+                .sorted()
+                .toList();
     }
 
     @Override
