@@ -15,7 +15,8 @@ import java.util.stream.Collectors;
 public class PostManagerImpl implements PostManager {
     private static final List<String> paths = List.of(
             "14112025-sealed-classes-in-java.md",
-            "14122025-virtual-threads-in-java.md"
+            "14122025-virtual-threads-in-java.md",
+            "24122025-christmas-reflections-on-ai.md"
     );
 
     @Override
