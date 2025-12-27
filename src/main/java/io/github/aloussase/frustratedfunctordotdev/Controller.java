@@ -75,9 +75,9 @@ public class Controller {
         return "posts";
     }
 
-    @GetMapping("/posts/{postPath}")
-    public String post(Model model, @PathVariable("postPath") String postPath) {
-        final var post = postManager.getPost(postPath);
+    @GetMapping("/posts/{postId}")
+    public String post(Model model, @PathVariable("postId") String postId) {
+        final var post = postManager.getPost(postId);
         model.addAttribute("post", post);
         return "post";
     }

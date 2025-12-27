@@ -20,10 +20,11 @@
 
     <ul>
         <li th:each="post : ${posts}">
-            <a th:href='${"posts/" + post.path }'>
+            <a th:href='${"posts/" + post.id }'>
                 <article class="post">
-                    <small class="post-date" th:text="${post.date} + ' | '"></small>
-                    <p class="post-summary" th:text="${post.title} + ' - '  + ${post.summary} + '...'"></p>
+                    <small class="post-date" th:text="${#strings.arraySplit(post.date, ' ')[0]}"></small>
+                    <p class="post-title" th:text="${post.title}"></p>
+                    <small class="post-summary" th:text="${post.summary}"></small>
                 </article>
             </a>
         </li>

@@ -15,7 +15,11 @@
 
     <article>
         <div id="raw-post-contents" th:text="${post.content}"></div>
-        <div id="post"></div>
+        <div id="post">
+            <div class="post-info">
+                <small th:text="'Last updated ' + ${#strings.arraySplit(post.date, ' ')[0]}"></small>
+            </div>
+        </div>
     </article>
 
     <script src="https://cdn.jsdelivr.net/npm/marked-highlight/lib/index.umd.js"></script>
@@ -38,7 +42,7 @@
         )
 
         const rawMd = document.getElementById("raw-post-contents").textContent
-        document.getElementById("post").innerHTML = marked.parse(rawMd)
+        document.getElementById("post").innerHTML += marked.parse(rawMd)
     </script>
 
 </div>

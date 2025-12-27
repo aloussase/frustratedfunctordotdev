@@ -5,5 +5,5 @@ import java.util.List;
 public interface PostManager {
     List<Post> getPosts();
 
-    Post getPost(String postPath);
+    Post getPost(String postId);
 }

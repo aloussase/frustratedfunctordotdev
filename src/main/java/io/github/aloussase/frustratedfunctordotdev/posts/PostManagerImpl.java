@@ -1,67 +1,78 @@
 package io.github.aloussase.frustratedfunctordotdev.posts;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 
+@Slf4j
 @Service
 public class PostManagerImpl implements PostManager {
-    private static final List<String> paths = List.of(
-            "14112025-sealed-classes-in-java.md",
-            "14122025-virtual-threads-in-java.md",
-            "24122025-christmas-reflections-on-ai.md"
-    );
+
+    private final HttpClient httpClient;
+    private final ObjectMapper objectMapper = new ObjectMapper();
+
+    @Value("${posts.api.base_url}")
+    private String baseUrl;
+
+    @Value("${posts.api.client_id}")
+    private String clientId;
+
+    @Value("${posts.api.client_secret}")
+    private String clientSecret;
+
+    public PostManagerImpl() {
+        this.httpClient = HttpClient.newHttpClient();
+        this.objectMapper.registerModule(new JavaTimeModule());
+    }
 
     @Override
     public List<Post> getPosts() {
-        return paths.stream()
-                .map(this::readPostFrom)
-                .filter(Optional::isPresent)
-                .map(Optional::get)
-                .sorted()
-                .toList();
+        final var req = HttpRequest.newBuilder()
+                .GET()
+                .uri(URI.create(baseUrl + "/api/v1/posts"))
+                .header("CF-Access-Client-Id", clientId)
+                .header("CF-Access-Client-Secret", clientSecret)
+                .build();
+        try {
+            final var res = httpClient.send(req, HttpResponse.BodyHandlers.ofString());
+            return objectMapper
+                    .readValue(res.body(), new TypeReference<List<Post>>() {
+                    })
+                    .stream()
+                    .sorted()
+                    .toList();
+        } catch (Exception ex) {
+            log.error("Error while listing posts from API", ex);
+            return Collections.emptyList();
+        }
     }
 
     @Override
-    public Post getPost(String postPath) {
-        return readPostFrom(postPath).orElseThrow(() -> new RuntimeException("Post does not exist"));
-    }
-
-
-    private Optional<Post> readPostFrom(String path) {
-        try (
-                final var st = Objects.requireNonNull(getClass().getResourceAsStream("/posts/" + path));
-                final var reader = new BufferedReader(new InputStreamReader(st))
-        ) {
-            final var contents = reader.lines().collect(Collectors.joining("\n"));
-            final var title = contents.lines().findFirst().map(s -> s.substring(2));
-
-            final var date = contents.lines()
-                    .filter(line -> line.startsWith("Date:"))
-                    .map(line -> line.substring("Date: ".length()))
-                    .findFirst();
-
-            final var summary = contents.lines()
-                    .skip(7)
-                    .collect(Collectors.joining())
-                    .chars()
-                    .limit(50)
-                    .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
-                    .toString();
-
-            if (title.isEmpty() || date.isEmpty())
-                return Optional.empty();
-
-            return Optional.of(new Post(title.get(), date.get(), contents, summary, path));
-        } catch (IOException ignored) {
-            return Optional.empty();
+    public Post getPost(String postId) {
+        final var req = HttpRequest.newBuilder()
+                .GET()
+                .uri(URI.create(baseUrl + "/api/v1/posts/" + postId))
+                .header("CF-Access-Client-Id", clientId)
+                .header("CF-Access-Client-Secret", clientSecret)
+                .build();
+        try {
+            final var res = httpClient.send(req, HttpResponse.BodyHandlers.ofString());
+            return objectMapper.readValue(res.body(), Post.class);
+        } catch (Exception ignored) {
+            // TODO Handle exception
+            return null;
         }
     }
+
 }
